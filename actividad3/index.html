@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<h2>Ver en consola del navegador</h2>
+	<script>
+		(() => {
+			const array = [6, 1, 3, 36, 0, -10, 60, 5, 5, 9];
+
+			console.log( `Orden inicial: ${array}` )
+
+			const quickSort = (arr) => {
+				if(arr.length < 1) return [];
+
+				let mediumValue = Math.floor(arr.length/2);
+				let pivot 		= arr[mediumValue];
+				let output 		= [];
+				let left 		= [];
+				let right 		= [];
+
+				for (var i = 0; i < arr.length; i++) {
+					if(i != mediumValue) {
+						if( arr[i] > pivot ) {
+							right.push(arr[i]);
+						} else {
+							left.push(arr[i]);
+						}
+					}
+				}
+
+				left 	= quickSort(left);
+				right 	= quickSort(right);
+
+				output 	= left.concat(pivot).concat(right);
+
+				return output;
+			}
+
+			console.log( `Orden final: ${quickSort(array)}` )
+		})();
+	</script>
+</body>
+</html>
